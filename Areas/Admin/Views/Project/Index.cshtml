@@ -1,0 +1,66 @@
+﻿@using Agency.Models
+@model List<Project>
+@{
+    int count = 0;
+}
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Project Table</h4>
+                <a asp-action="create" class="btn btn-primary">Create</a>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    No
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Image
+                                </th>
+                                <th>
+                                    Category
+                                </th>
+                                <th>
+                                    Settings
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach(Project project in Model)
+                            {
+                                count++;
+                                <tr>
+                                    <td>
+                                       @count
+                                    </td>
+                                <td>
+                                    @project.Description
+                                </td>
+                                <td class="py-1">
+                                    <img src="~/assets/img/portfolio/@project.Image" alt="image" />
+                                </td>
+                               
+                                <td>
+                                   @project.Category.Name
+                                </td>
+                                <td>
+                                        <a asp-action="update" asp-route-id="@project.Id" class="btn btn-warning"> <i class="mdi mdi-pencil"></i></a>
+                                        <a asp-action="delete" asp-route-id="@project.Id" class="btn btn-danger"><i class="mdi mdi-delete"></i></a>
+                                        <a asp-action="detail" asp-route-id="@project.Id" class="btn btn-primary"><i class="mdi mdi-open-in-new"></i></a>
+                                </td>
+                            </tr>
+                                
+                            }
+                            
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
