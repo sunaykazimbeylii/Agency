@@ -66,11 +66,13 @@ namespace Agency.Migrations
 
             modelBuilder.Entity("Agency.Models.Project", b =>
                 {
-                    b.HasOne("Agency.Models.Category", null)
+                    b.HasOne("Agency.Models.Category", "Category")
                         .WithMany("Projects")
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Agency.Models.Category", b =>

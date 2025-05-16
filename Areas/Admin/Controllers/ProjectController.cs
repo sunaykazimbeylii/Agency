@@ -102,10 +102,11 @@ namespace Agency.Areas.Admin.Controllers
                     ModelState.AddModelError(nameof(CreateProjectVM.Photo), "Size max 2dir");
                     return View();
                 }
+                bool nameResult = await _context.Projects.AnyAsync(p => p.Description == projectVM.Description && p.Id != id);
             }
 
 
-
+            return RedirectToAction(nameof(Index));
 
         }
     }
